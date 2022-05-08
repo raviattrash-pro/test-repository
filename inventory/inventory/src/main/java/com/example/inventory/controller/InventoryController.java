@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.inventory.bean.Inventory;
 import com.example.inventory.exception.ProductIdNotFound;
 import com.example.inventory.repository.InventoryRepo;
+import com.example.inventory.service.InventoryService;
 
 @RestController
-public class InventoryDetails {
+public class InventoryController {
 	@Autowired
-	InventoryRepo inventory;
+	private InventoryService inventoryService;
 	
 	@GetMapping("/demo")
 	public Inventory demo() {
@@ -31,26 +32,20 @@ public class InventoryDetails {
 	}
 	@GetMapping("/inventory")
 	public List<Inventory> getAllProduct() {
-		return inventory.findAll();
+		return inventoryService.getAllProduct();
 	}
-	@PutMapping("/inventory/{id}")
-	public void updateProduct(@RequestBody Inventory inven ,@PathVariable Integer id) {
-			if((inventory.findById(id)).isPresent()) {
-				inventory.save(inven);
-			}
-			else {
-				throw new ProductIdNotFound(id+" :  id not found");
-			}
-		
-		
+	@PutMapping("/inventory/{productId}")
+	public void updateProduct(@RequestBody Inventory inventory ,@PathVariable Integer productId) { 
+		inventoryService.updateProduct(inventory, productId);
 	}
 	@PostMapping("/inventory")
-	public void addProduct(@RequestBody Inventory inven) {
-		inventory.save(inven);
+	public void addProduct(@RequestBody Inventory inventory) {
+		inventoryService.addProduct(inventory);
+		
 	}
-	@PatchMapping("/inventory/{id}")
-	public void updateSpecificDetails(@RequestBody Inventory inven) {
-		inventory.save(inven);
+	@PatchMapping("/inventory/{productId}")
+	public void updateSpecificDetails(@RequestBody String productDetails,@PathVariable Integer productId) {
+		inventoryService.updateSpecificDetails(productDetails,productId);
 	}
 
 }
