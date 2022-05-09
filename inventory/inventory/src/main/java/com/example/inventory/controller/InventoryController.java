@@ -12,36 +12,25 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.inventory.bean.Inventory;
-import com.example.inventory.exception.ProductIdNotFound;
-import com.example.inventory.repository.InventoryRepo;
 import com.example.inventory.service.InventoryService;
 
 @RestController
 public class InventoryController {
+	
 	@Autowired
 	private InventoryService inventoryService;
 	
-	@GetMapping("/demo")
-	public Inventory demo() {
-		Inventory in = new Inventory();
-		in.setProductId(1);
-		in.setProductInventory(10);
-		in.setProductPrice(100);
-		in.setProductDetails("Book");
-		return in;
-	}
 	@GetMapping("/inventory")
 	public List<Inventory> getAllProduct() {
 		return inventoryService.getAllProduct();
 	}
-	@PutMapping("/inventory/{productId}")
-	public void updateProduct(@RequestBody Inventory inventory ,@PathVariable Integer productId) { 
-		inventoryService.updateProduct(inventory, productId);
+	@PutMapping("/inventory")
+	public void updateProduct(@RequestBody Inventory inventory) { 
+		inventoryService.updateProduct(inventory);
 	}
 	@PostMapping("/inventory")
 	public void addProduct(@RequestBody Inventory inventory) {
 		inventoryService.addProduct(inventory);
-		
 	}
 	@PatchMapping("/inventory/{productId}")
 	public void updateSpecificDetails(@RequestBody String productDetails,@PathVariable Integer productId) {
