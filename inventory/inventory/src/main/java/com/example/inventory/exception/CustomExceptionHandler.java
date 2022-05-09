@@ -19,8 +19,6 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 		ExceptionFormat exceptionFormat = new ExceptionFormat(ex.getMessage(),new Date(),request.getDescription(false));
 		
 		return new ResponseEntity(exceptionFormat, HttpStatus.NOT_FOUND) ;
-		
-		
 	}
 	
 }
