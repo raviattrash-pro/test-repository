@@ -11,26 +11,25 @@ import com.example.inventory.exception.ProductIdNotFound;
 import com.example.inventory.repository.InventoryRepo;
 import com.example.inventory.service.InventoryService;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class InventoryServiceImpl implements InventoryService {
 	@Autowired
 	InventoryRepo inventoryRepository;
+	
 
 	@Override
 	public List<Inventory> getAllProduct() {
-		inventoryRepository.findAll();
-		return null;
+		return inventoryRepository.findAll();
 	}
 
 	@Override
-	public void updateProduct(Inventory inven, Integer id) {
-		if((inventoryRepository.findById(id)).isPresent()) {
-			inventoryRepository.save(inven);
-		}
-		else {
-			throw new ProductIdNotFound(id+" :  id not found");
-		}
-		
+	public void updateProduct(Inventory inventory) {
+		Optional<Inventory> optionalProduct = inventoryRepository.findById(inventory.getProductId());
+		Inventory product = optionalProduct.orElseThrow(() -> new ProductIdNotFound(inventory.getProductId()+" :  id not found"));
+		inventoryRepository.save(product);
 	}
 
 	@Override
@@ -40,13 +39,19 @@ public class InventoryServiceImpl implements InventoryService {
 	}
 
 	@Override
-	public void updateSpecificDetails(String productDetails, Integer id) {
+	public void updateSpecificDetails(Inventory productDetails, Integer id) {
 		Optional<Inventory> product = inventoryRepository.findById(id);
 		if(product.isPresent()) {
 			Inventory currentProduct = product.get();
-			currentProduct.setProductDetails(productDetails);
+			currentProduct.setProductInventory(productDetails.getProductInventory());
 			inventoryRepository.save(currentProduct);
 		}
+	}
+
+	@Override
+	public Inventory getProductId(Integer id) {
+		return inventoryRepository.findById(id).get();
+		
 	}
 
 	

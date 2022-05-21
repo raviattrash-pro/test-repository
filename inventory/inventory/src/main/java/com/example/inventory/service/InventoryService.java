@@ -10,8 +10,9 @@ import com.example.inventory.bean.Inventory;
 @Service
 public interface InventoryService {
 	public List<Inventory> getAllProduct();
-	public void updateProduct(Inventory inven,Integer id);
+	public void updateProduct(Inventory inven);
 	public void addProduct(Inventory inven) ;
-	public void updateSpecificDetails( String productDetails,Integer id);
+	public void updateSpecificDetails( Inventory productDetails,Integer id);
+	public Inventory getProductId(Integer id);
 	
 }
