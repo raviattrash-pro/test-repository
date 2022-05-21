@@ -16,11 +16,21 @@ import com.example.inventory.service.InventoryService;
 
 @RestController
 public class InventoryController {
+
+	
+	@GetMapping("/inventory")
+	public String testinventory() {
+		return"Inventory";
+	}
 	
 	@Autowired
 	private InventoryService inventoryService;
 	
-	@GetMapping("/inventory")
+	@GetMapping("/inventory/{productId}")
+	public Inventory getProductId(@PathVariable Integer productId ) {
+		return inventoryService.getProductId(productId);
+	}
+	@GetMapping("/inventory2")
 	public List<Inventory> getAllProduct() {
 		return inventoryService.getAllProduct();
 	}
@@ -32,8 +42,8 @@ public class InventoryController {
 	public void addProduct(@RequestBody Inventory inventory) {
 		inventoryService.addProduct(inventory);
 	}
-	@PatchMapping("/inventory/{productId}")
-	public void updateSpecificDetails(@RequestBody String productDetails,@PathVariable Integer productId) {
+	@PutMapping("/inventory/{productId}")
+	public void updateSpecificDetails(@RequestBody Inventory productDetails,@PathVariable Integer productId) {
 		inventoryService.updateSpecificDetails(productDetails,productId);
 	}
 

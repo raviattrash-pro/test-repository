@@ -1,0 +1,59 @@
+    1  git clone https://github.com/raviattrash-pro/test-repository.git
+    2  git clone https://github.com/raviattrash-pro/test-repository.git
+    3  git clone https://github.com/raviattrash-pro/test-repository.git
+    4  git clone https://github.com/raviattrash-pro/test-repository.git
+    5  git status
+    6  git status
+    7  git status
+    8  git checkout
+    9  git checkout dev
+   10  git branch
+   11  git status
+   12  git dif  inventory/inventory/pom.xml
+   13  git diff  inventory/inventory/pom.xml
+   14  git add inventory
+   15  git checkout main
+   16  git pull
+   17  git checkout dev
+   18  git push
+   19  git diff inventory
+   20  git status
+   21  git push
+   22  history
+   23  git status
+   24  git commit -m " Exception handling "
+   25  git config --global user.email "raviattrash1@gmail.com"
+   26   git config --global user.name "Ravi"
+   27  git commit -m " Exception handling "
+   28  git push
+   29  ls
+   30  git rn
+   31  git rm
+   32  git rm test-repository
+   33  ls
+   34  git push
+   35  git commit -m "code clean"
+   36  git push
+   37  git status
+   38  git checkout main
+   39  git pull
+   40  git checkout dev
+   41  git pull orgin main
+   42  git pull origin main
+   43  git pull origin main
+   44  ls
+   45  git push
+   46  ls
+   47  git add .
+   48  git commit -m "code clean"
+   49  git push
+   50  git rm --cached sub-directory
+   51  git rm --cached test-repository
+   52  git checkout main
+   53  ls
+   54  git checkout -b dev_code_clean
+   55  git rm --cached test-repository
+   56  git commit -m "clean code"
+   57  git push
+   58   git push --set-upstream origin dev_code_clean
+   59  history > help.txt
